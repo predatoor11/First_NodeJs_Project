@@ -1,3 +1,3 @@
 # First_NodeJs_Project
 
-NodeJs ile basit bir blog uygulaması
+I created a blog using NodeJs for the first time
