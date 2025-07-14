@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  	<meta charset="UTF-8" />
+  	<title>Basit Blog</title>
+  	<style>
+		body { font-family: Arial; padding: 2rem; }
+		input, textarea { display: block; width: 300px; margin-bottom: 10px; }
+		.post { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+		button { margin-right: 5px; }
+	</style>
+</head>
+<body>
+	<h1>Yeni Yazı Ekle</h1>
+	<form id="postForm">
+		<input type="text" id="title" placeholder="Başlık" required />
+		<textarea id="content" placeholder="İçerik" required></textarea>
+		<input type="text" id="author" placeholder="Yazar" required />
+		<input type="text" id="category" placeholder="Kategori" required />
+		<button type="submit">Yayınla</button>
+	</form>
+
+	<h2>Yazılar</h2>
+	<div id="postsContainer"></div>
+
+  	<script src="./custom/script.js"></script>
+</body>
+</html>
