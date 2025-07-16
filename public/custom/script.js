@@ -14,10 +14,11 @@ async function loadPosts() {
     div.innerHTML = `
       <h3>${post.title}</h3>
       <p>${post.content}</p>
+      <small>Blog Resmi: ${post.blogImage || ""}</small><br><br>
       <small>Yazar: ${post.author || "Anonim"}</small><br><br>
       <small>Kategori: ${post.category || "Anonim"}</small><br><br>
       <button onclick="deletePost('${post._id}')">Sil</button>
-      <button onclick="editPost('${post._id}', '${post.title}', \`${post.content}\`, '${post.category}')">Düzenle</button>
+      <button onclick="editPost('${post._id}', '${post.title}', '${post.blogImage}', \`${post.content}\`, '${post.category}')">Düzenle</button>
     `;
     container.appendChild(div);
   });
@@ -28,13 +29,14 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
+  const blogImage = document.getElementById("blogImage").value;
   const author = document.getElementById("author").value;
   const category = document.getElementById("category").value;
 
   await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, content, author, category }),
+    body: JSON.stringify({ title, content, blogImage, author, category }),
   });
 
   form.reset();
@@ -48,15 +50,16 @@ async function deletePost(id) {
 }
 
 // Yazıyı düzenle
-function editPost(id, oldTitle, oldContent, oldCategory) {
+function editPost(id, oldTitle, oldContent, oldCategory, oldBlogImage) {
   const newTitle = prompt("Yeni başlık:", oldTitle);
   const newContent = prompt("Yeni içerik:", oldContent);
+  const newBlogImage = prompt("Yeni içerik:", oldBlogImage);
   const newCategory = prompt("Yeni kategori:", oldCategory)
   if (newTitle && newContent && newCategory) {
     fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: newTitle, content: newContent, category: newCategory}),
+      body: JSON.stringify({ title: newTitle, content: newContent, blogImage: newBlogImage, category: newCategory}),
     }).then(loadPosts);
   }
 }

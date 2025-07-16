@@ -6,6 +6,7 @@ const postSchema = new mongoose.Schema({
         require: true,
     },
     content: String,
+    blogImage: String,
     author: String,
     category: String
     }, {

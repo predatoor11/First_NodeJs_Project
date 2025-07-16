@@ -3,8 +3,8 @@ const Post = require('../models/Post');
 // Yeni yazı oluştur (POST api/posts)
 const createPost = async (req, res) => {
     try {
-        const { title, content, author, category } = req.body;
-        const newPost = await Post.create({ title, content, author, category });
+        const { title, content, author, category, blogImage } = req.body;
+        const newPost = await Post.create({ title, content, author, category, blogImage });
         res.status(201).json(newPost);
     } catch (err) {
         res.status(400).json({ error: err.message });
